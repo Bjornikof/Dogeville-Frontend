@@ -1,0 +1,190 @@
+
+.dog-header {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+#search-div {
+  margin-top: 2em;
+}
+
+.main-col {
+  margin-top: 10px;
+}
+
+.icon-pet-awesome {
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.fa {
+  font-size: 25px;
+}
+
+input, select{
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border: 1px solid #AB97DD;
+  box-shadow: 0px 0px 4px #AB97DD;
+  -moz-box-shadow: 0px 0px 4px #AB97DD;
+  -webkit-box-shadow: 0px 0px 4px #AB97DD;
+}
+
+ngb-pagination ::ng-deep a {
+  color: #8855C4 !important;
+}
+ngb-pagination ::ng-deep .page-item.active .page-link {
+  border-color: #8855C4 ;
+  background-color: #8855C4 ;
+  color: white !important;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem #AB97DD;
+}
+
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem #AB97DD;
+}
+
+.avatar {
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  outline: none;
+  border: 1px solid #8855C4;
+  box-shadow: 0px 0px 4px #8855C4;
+  -moz-box-shadow: 0px 0px 4px #8855C4;
+  -webkit-box-shadow: 0px 0px 4px #8855C4;
+  margin-bottom: 20px;
+}
+
+.avatar img {
+  width: 200px;
+  height: 200px;
+}
+
+.avatar-wingman {
+  overflow: hidden;
+  position: relative;
+  width: 95px;
+  height: 95px;
+  outline: none;
+  border-radius: 50%;
+  border: 1px solid #8855C4;
+  box-shadow: 0px 0px 6px #8855C4;
+  -moz-box-shadow: 0px 0px 6px #8855C4;
+  -webkit-box-shadow: 0px 0px 6px #8855C4;
+  margin-left: 13px;
+  margin-bottom: 2px;
+}
+
+.avatar-wingman img {
+  width: 95px;
+  height: 95px;
+}
+
+
+.wingman-btn {
+  width: fit-content;
+  height: fit-content;
+  padding-bottom: 5px;
+  font-size: 15px;
+  outline: none;
+  text-align: center;
+  color: white;
+  background-color: #8855C4;
+}
+
+.wingman-btn:hover {
+  background-color: #633C90;
+}
+
+.wingman-btn:focus {
+  outline: none;
+  border: 1px solid #8855C4;
+  box-shadow: 0px 0px 6px #8855C4;
+  -moz-box-shadow: 0px 0px 6px #8855C4;
+  -webkit-box-shadow: 0px 0px 6px #8855C4;
+}
+
+.msg-icon {
+  padding-top: 4px;
+  font-size: 15px;
+  color: white;
+}
+
+
+.all-page {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+a.dog-card,
+a.dog-card:hover {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dog-card {
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.col-1-icon {
+  padding-left: 15px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 23px
+}
+
+.icon-side-text {
+  margin-top: 10px;
+  margin-left: 7px;
+}
+
+.optional-info {
+  margin-left: 7px;
+}
+
+
+.vertical-space {
+  height: 3px;
+}
+
+.wingman-group {
+  margin-right: 15px;
+}
+
+.wingman-btn {
+  margin-right: 15px;
+}
+
+.width-space {
+  width: 3px;
+}
+
+.inactiveLink {
+  pointer-events: none;
+  cursor: default;
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
+.avatar-section {
+  padding-right: 5px;
+  padding-left: 10px;
+}
+
+

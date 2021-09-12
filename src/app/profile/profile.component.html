@@ -1,0 +1,257 @@
+<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css"/>
+
+<div id="register-div" class="d-flex justify-content-center">
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex flex-column">
+        <div class="avatar"><img [src]="profilephoto"></div>
+        <input id="mail-preview" type="text" class="form-control" value="{{mail}}" readonly>
+        <div class="vertical-space"></div>
+        <button href="#" class="btn btn-outline-light" style="background-color: #8855C4"
+                [routerLink]="[ '/change/profile-photo']">Change Profile Photo
+        </button>
+        <button href="#" class="btn btn-outline-light" [routerLink]="[ '/change/mail']" style="background-color: #8855C4">Change Email Address</button>
+        <button href="#" class="btn btn-outline-light" [routerLink]="[ '/change/password']" style="background-color: #8855C4">Change Password</button>
+      </div>
+    </div>
+  </div>
+  <div class="width-space"></div>
+  <div class="card">
+    <div class="card-body">
+      <div  *ngIf="submitted" class="alert-success alert">You have edited your profile successfully.
+      </div>
+      <form [formGroup]="profile" (ngSubmit)="editWingman()">
+        <div class="input-group input-group-sm mb-3">
+          <div class="col">
+            <div class="form-group">
+              <div class="input-group-prepend">
+              <span class="icon-register" style="color: #8855C4"><svg xmlns="http://www.w3.org/2000/svg" width="25"
+                                                                      height="25" fill="currentColor"
+                                                                      class="bi bi-person-fill" viewBox="0 0 16 16">
+  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+</svg></span>
+                <div class="col">
+                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                         placeholder="Name" [(ngModel)]="wingman.wmname" formControlName="name"
+                         [ngClass]="{'invalid-input': profile.controls.name.invalid && (profile.controls.name.dirty || profile.controls.name.touched)}"/>
+                  <div
+                    *ngIf="profile.controls['name'].invalid && (profile.controls['name'].dirty || profile.controls['name'].touched)"
+                    class="alert-div">
+                    <div *ngIf="profile.controls['name'].errors.required">
+                      Name is required
+                    </div>
+                    <div *ngIf="profile.controls['name'].errors.pattern">
+                      Name can't include numbers
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group-prepend">
+              <span class="icon-register" style="color: #8855C4"><svg xmlns="http://www.w3.org/2000/svg" width="25"
+                                                                      height="25" fill="currentColor"
+                                                                      class="bi bi-people-fill" viewBox="0 0 16 16">
+  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+  <path fill-rule="evenodd"
+        d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+  <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+</svg></span>
+                <div class="col">
+                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                         placeholder="Surname" [(ngModel)]="wingman.wmsurname" formControlName="surname"
+                         [ngClass]="{'invalid-input': profile.controls.surname.invalid && (profile.controls.surname.dirty || profile.controls.surname.touched)}">
+                  <div
+                    *ngIf="profile.controls['surname'].invalid && (profile.controls['surname'].dirty || profile.controls['surname'].touched)"
+                    class="alert-div">
+                    <div *ngIf="profile.controls['surname'].errors.required">
+                      Surname is required
+                    </div>
+                    <div *ngIf="profile.controls['surname'].errors.pattern">
+                      Surname can't include numbers
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group-prepend">
+                <span class="icon-register-awesome"><fa-icon [icon]="faVenusMars" class="fa"
+                                                             style="color: #8855C4"></fa-icon></span>
+                <div class="col">
+                  <select class="form-control"
+                          required="required"
+                          [(ngModel)]="wingman.wmgender"
+                          formControlName="gender"
+                          [ngClass]="{'invalid-input': profile.controls.gender.invalid && (profile.controls.gender.dirty || profile.controls.gender.touched)}">
+                    <option disabled selected value="undefined">Gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                  </select>
+                  <div
+                    *ngIf="profile.controls['gender'].invalid && (profile.controls['gender'].dirty || profile.controls['gender'].touched)"
+                    class="alert-div">
+                    <div *ngIf="profile.controls['gender'].errors.required">
+                      Gender is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group input-group">
+                <span class="icon-register-awesome"><fa-icon [icon]="faBirthdayCake" class="fa"
+                                                             style="color: #8855C4"></fa-icon></span>
+              <div class="col">
+                <div class="input-group">
+                  <input class="form-control" placeholder="YYYY-MM-DD"
+                         name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
+                         formControlName="birthday" readonly
+                         [ngClass]="{'invalid-input': profile.controls.birthday.invalid && (profile.controls.birthday.dirty || profile.controls.birthday.touched)}">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                      <fa-icon [icon]="faCalendar"></fa-icon>
+                    </button>
+                  </div>
+                </div>
+                <div
+                  *ngIf="profile.controls['birthday'].invalid && (profile.controls['birthday'].dirty || profile.controls['birthday'].touched)"
+                  class="alert-div">
+                  <div *ngIf="profile.controls['birthday'].errors.required">
+                    Birthday is required
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group-prepend">
+                <span class="icon-register-awesome"><fa-icon [icon]="faGraduationCap" class="fa"
+                                                             style="color: #8855C4"></fa-icon></span>
+                <div class="col">
+                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                         placeholder="Education" [(ngModel)]="wingman.wmedu" formControlName="education"
+                         [ngClass]="{'invalid-input': profile.controls.education.invalid && (profile.controls.education.dirty || profile.controls.education.touched)}">
+                  <div
+                    *ngIf="profile.controls['education'].invalid && (profile.controls['education'].dirty || profile.controls['education'].touched)"
+                    class="alert-div">
+                    <div *ngIf="profile.controls['education'].errors.pattern">
+                      Education can't include numbers.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group-prepend">
+                <span class="icon-register-awesome"><fa-icon [icon]="faUserMd" class="fa"
+                                                             style="color: #8855C4"></fa-icon></span>
+                <div class="col">
+                  <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                         placeholder="Job" [(ngModel)]="wingman.wmjob" formControlName="job"
+                         [ngClass]="{'invalid-input': profile.controls.job.invalid && (profile.controls.job.dirty || profile.controls.job.touched)}">
+                  <div
+                    *ngIf="profile.controls['job'].invalid && (profile.controls['job'].dirty || profile.controls['job'].touched)"
+                    class="alert-div">
+                    <div *ngIf="profile.controls['job'].errors.pattern">
+                      Job can't include numbers
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group-prepend">
+                <span class="icon-register-awesome"><fa-icon [icon]="faGlobeEurope" class="fa"
+                                                             style="color: #8855C4"></fa-icon></span>
+                <div class="col">
+                  <select class="form-control"
+                          id="select-type-basic" [(ngModel)]="wingman.wmcountry"
+                          formControlName="country"
+                          [ngClass]="{'invalid-input': profile.controls.country.invalid && (profile.controls.country.dirty || profile.controls.country.touched)}">
+                    <option *ngFor="let country_item of country_values" [value]="country_item.Value">
+                      {{country_item.Text}}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="profile.controls['country'].invalid && (profile.controls['country'].dirty || profile.controls['country'].touched)"
+                    class="alert-div">
+                    <div *ngIf="profile.controls['country'].errors.required">
+                      Country is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group-prepend">
+                <span class="icon-register-awesome"><fa-icon [icon]="faMap" class="fa"
+                                                             style="color: #8855C4"></fa-icon></span>
+                <div class="col">
+                  <select class="form-control"
+                          [(ngModel)]="wingman.wmstate"
+                          formControlName="state"
+                          [ngClass]="{'invalid-input': profile.controls.state.invalid && (profile.controls.state.dirty || profile.controls.state.touched)}">
+                    <option *ngFor="let state_item of state_values" [value]="state_item.Value">
+                      {{state_item.Text}}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="profile.controls['state'].invalid && (profile.controls['state'].dirty || profile.controls['state'].touched)"
+                    class="alert-div">
+                    <div *ngIf="profile.controls['state'].errors.required">
+                      State is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group-prepend">
+                <span class="icon-register-awesome"><fa-icon [icon]="faMapMarkedAlt" class="fa"
+                                                             style="color: #8855C4"></fa-icon></span>
+                <div class="col">
+                  <select class="form-control"
+                          [(ngModel)]="wingman.wmcounty"
+                          formControlName="county"
+                          [ngClass]="{'invalid-input': profile.controls.county.invalid && (profile.controls.county.dirty || profile.controls.county.touched)}">
+                    <ng-template [ngIf]="wingman.wmstate=='ANKARA'" [ngIfElse]="elseTemplate">
+                      <option *ngFor="let ankara_item of ankara_values" [value]="ankara_item.Value">
+                        {{ankara_item.Text}}
+                      </option>
+                    </ng-template>
+                    <ng-template #elseTemplate>
+                      <option *ngFor="let ist_item of ist_values" [value]="ist_item.Value">
+                        {{ist_item.Text}}
+                      </option>
+                    </ng-template>
+                  </select>
+                  <div
+                    *ngIf="profile.controls['county'].invalid && (profile.controls['county'].dirty || profile.controls['county'].touched)"
+                    class="alert-div">
+                    <div *ngIf="profile.controls['county'].errors.required">
+                      County is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="d-flex justify-content-center">
+            <button id="save-btn" class="btn btn-outline-light" type="submit" style="background-color: #8855C4">
+              SAVE
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

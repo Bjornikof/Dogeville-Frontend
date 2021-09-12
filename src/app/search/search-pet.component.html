@@ -1,0 +1,214 @@
+<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css"/>
+
+<div id="search-div" class="d-flex justify-content-center all-page">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        <div class="row header-content">
+          <h4 class="dog-header" style="color: #8855C4">Find a mate</h4>
+        </div>
+      </div>
+      <form [formGroup]="search">
+        <div class="card-body">
+          <div class="col main-col">
+            <div class="row">
+
+              <div class="col">
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome" *ngIf="search.controls['type'].value == 'dog'"><fa-icon [icon]="faDog"
+                                                                                                       class="fa"
+                                                                                                       style="color: #8855C4"></fa-icon></span>
+                    <span class="icon-pet-awesome" *ngIf="search.controls['type'].value == 'cat'"><fa-icon
+                      [icon]="faCat"
+                      class="fa"
+                      style="color: #8855C4"></fa-icon></span>
+                    <select class="form-control"
+                            formControlName="type">
+                      <option *ngFor="let type_item of type_values" [value]="type_item.Value">
+                        {{type_item.Text}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faPaw" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <select *ngIf="search.controls['type'].value =='dog'" class="form-control"
+                            formControlName="breed">
+                      <option *ngFor="let breed_item of breed_dog_values" [value]="breed_item.Value">
+                        {{breed_item.Text}}
+                      </option>
+                    </select>
+                    <select *ngIf="search.controls['type'].value =='cat'" class="form-control"
+                            formControlName="breed">
+                      <option *ngFor="let breed_item of breed_cat_values" [value]="breed_item.Value">
+                        {{breed_item.Text}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faVenusMars" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <select class="form-control"
+                            formControlName="gender">
+                      <option *ngFor="let gender_item of gender_values" [value]="gender_item.Value">
+                        {{gender_item.Text}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faGlobeEurope" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+
+                    <select class="form-control"
+                            formControlName="country">
+                      <option *ngFor="let country_item of country_values" [value]="country_item.Value">
+                        {{country_item.Text}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faMap" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+
+                    <select class="form-control"
+                            formControlName="state">
+                      <option *ngFor="let state_item of state_values" [value]="state_item.Value">
+                        {{state_item.Text}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faMapMarkedAlt" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <select class="form-control"
+                            formControlName="county"
+                            *ngIf="search.controls['state'].value =='null'">
+                      <option *ngFor="let def_item of def_county" [value]="def_item.Value">
+                        {{def_item.Text}}
+                      </option>
+                    </select>
+                    <select class="form-control"
+                            formControlName="county"
+                            *ngIf="search.controls['state'].value =='ANKARA'">
+                      <option *ngFor="let ankara_item of ankara_values" [value]="ankara_item.Value">
+                        {{ankara_item.Text}}
+                      </option>
+                    </select>
+                    <select class="form-control"
+                            formControlName="county"
+                            *ngIf="search.controls['state'].value =='İSTANBUL'">
+                      <option *ngFor="let ist_item of ist_values" [value]="ist_item.Value">
+                        {{ist_item.Text}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="d-flex justify-content-center">
+                <button id="search-btn" class="btn btn-outline-light" style="background-color: #8855C4"
+                        (click)="getResults()">
+                  SEARCH
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="d-flex justify-content-center" style="margin-top: 1em">
+      <ngb-pagination *ngIf="resultset.length>0"
+                      [(page)]="page"
+                      [pageSize]="pageSize"
+                      [collectionSize]="resultset.length"></ngb-pagination>
+    </div>
+
+    <div class="card-body">
+      <div id="dogs-column" class="col ">
+        <a href="/pet?result={{res.pid}}" class="card w-auto dog-card"
+           *ngFor="let res of resultset | slice: (page-1) * pageSize : page * pageSize">
+          <div class="col col-md-auto col-buttons">
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-md-center">
+              <div class="d-flex flex-column justify-content-start avatar-section">
+                <div class="avatar"><img *ngIf="res.pphoto!=null" [src]="res.pphoto">
+                  <img *ngIf="res.pphoto==null && res.ptype == 'dog'" [src]="defaultdogphoto">
+                  <img *ngIf="res.pphoto==null && res.ptype == 'cat'" [src]="defaultcatphoto"></div>
+              </div>
+              <div class="col">
+                <div class="row row-main-info">
+                  <div class="col col-main-result">
+                    <h5 class="name" type="text" *ngIf="res.pgender == 'Male'"
+                        style="color: #419FD4">{{res.pname}}</h5>
+                    <h5 class="name" type="text" *ngIf="res.pgender == 'Female'"
+                        style="color: #E592DB">{{res.pname}}</h5>
+                    <a class="btn inactiveLink" type="text" *ngIf="res.pgender == 'Male'"
+                       style="background: #419FD4" readonly>{{res.pbreed}}</a>
+                    <a class="btn inactiveLink" type="text" *ngIf="res.pgender == 'Female'"
+                       style="background: #E592DB" readonly>{{res.pbreed}}</a>
+                    <div class="row">
+                        <span>
+                        <fa-icon class="col-1-icon" [icon]="faBirthdayCake"
+                                 style="color: #8855C4; font-size: 25px"></fa-icon>
+                        </span>
+                      <h5 class="icon-side-text" type="text" style="font-size: 18px">{{res.pbirth}}</h5>
+                    </div>
+                    <div class="row">
+                        <span>
+                        <fa-icon class="col-1-icon" [icon]="faMap"
+                                 style="color: #8855C4; font-size: 25px"></fa-icon>
+                        </span>
+                      <h5 class="icon-side-text" type="text" style="font-size: 18px">{{res.wmid.wmcounty}},
+                        <b>{{res.wmid.wmstate}}</b></h5>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column justify-content-md-center">
+                    <div class="avatar-wingman"><img *ngIf="res.wmid.wmphoto!=null" [src]="res.wmid.wmphoto">
+                    </div>
+                    <button class="btn wingman-btn">
+                      <fa-icon class="msg-icon" [icon]="faEnvelope"
+                      ></fa-icon>
+                      WINGMAN
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center" *ngIf="resultset.length==0 && clicked">
+      <img class="no result" src="assets/no_pet.jpg">
+    </div>
+  </div>
+</div>

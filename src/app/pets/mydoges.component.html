@@ -1,0 +1,250 @@
+<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css"/>
+
+<div class="vertical-space"></div>
+<div class="all-page">
+  <div class="col">
+    <div id="dog-section" class="card w-100">
+      <div class="card-header">
+        <div class="row header-content">
+          <h4 class="dog-header" style="color: #8855C4">My Doges</h4>
+          <div class="justify-content-end ml-auto">
+            <button id="add-doge" class="btn-circle btn-success" (click)="goToAdd('dog')">
+              <fa-icon [icon]="faPlus" class="fa"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="card-body">
+          <div id="dogs-column" class="col ml-auto">
+            <div id="dog-card" class="card w-auto" *ngFor="let dog of dogs">
+              <div class="col col-md-auto col-buttons">
+                <div class="d-flex flex-row-reverse">
+                  <button id="delete-doge" class="btn-circle btn-danger" (click)="deletePet(dog.pid, dog.pname)">
+                    <fa-icon [icon]="faTrashAlt" class="fa"></fa-icon>
+                  </button>
+                  <div class="width-space"></div>
+                  <button id="edit-doge" class="btn-circle btn-info" (click)="goToEdit(dog.pid, 'dog')">
+                    <fa-icon [icon]="faPenAlt" class="fa"></fa-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-md-center">
+                  <div class="d-flex flex-column justify-content-start avatar-section">
+                    <div class="avatar"><img *ngIf="dog.pphoto!=null" [src]="dog.pphoto">
+                      <img *ngIf="dog.pphoto==null" [src]="defaultdogphoto"></div>
+                    <button href="#" class="btn btn-outline-light" style="background-color: #8855C4; width: auto"
+                            (click)="changePhoto(dog.pid, 'dog')">Change Pet Photo
+                    </button>
+                  </div>
+                  <div class="col">
+                    <div class="row row-main-info">
+                      <div class="col col-md-auto col-main">
+                        <h5 class="name" type="text" *ngIf="dog.pgender == 'Male'"
+                            style="color: #419FD4">{{dog.pname}}</h5>
+                        <h5 class="name" type="text" *ngIf="dog.pgender == 'Female'"
+                            style="color: #E592DB">{{dog.pname}}</h5>
+                        <a class="btn inactiveLink" type="text" *ngIf="dog.pgender == 'Male'"
+                           style="background: #419FD4" readonly>{{dog.pbreed}}</a>
+                        <a class="btn inactiveLink" type="text" *ngIf="dog.pgender == 'Female'"
+                           style="background: #E592DB" readonly>{{dog.pbreed}}</a>
+                        <div class="row">
+                        <span>
+                        <fa-icon class="col-1-icon" [icon]="faBirthdayCake"
+                                 style="color: #8855C4; font-size: 25px"></fa-icon>
+                        </span>
+                          <h5 class="icon-side-text" type="text">{{dog.pbirth}}</h5>
+                        </div>
+                        <div *ngIf="dog.pisbred == false" class="row">
+                          <fa-icon class="col-1-icon" [icon]="faSeedling"
+                                   style="color: #8855C4; font-size: 25px"></fa-icon>
+                          <h5 class="icon-side-text" type="text">First Timer</h5>
+                        </div>
+
+                        <div *ngIf="dog.pisbred == true" class="row">
+                          <fa-icon class="col-1-icon" [icon]="faFire"
+                                   style="color: #8855C4; font-size: 25px"></fa-icon>
+                          <h5 class="icon-side-text" type="text">Experienced</h5>
+                        </div>
+                      </div>
+
+                      <div class="col col-md-auto optional-col">
+                        <div class="row optional-info">
+                          <div class="col col-md-auto opt-1">
+                            <div class="row">
+                              <fa-icon [icon]="faPalette"
+                                       style="color: #8855C4; font-size: 25px"></fa-icon>
+                              <h5 class="icon-side-text" type="text" style="color: #8855C4; font-weight: bold">
+                                Color</h5>
+                            </div>
+                            <h5 type="text" *ngIf="dog.pcolor != null">{{dog.pcolor}}</h5>
+                            <h5 type="text" *ngIf="dog.pcolor === null">-</h5>
+                            <div class="row">
+                              <fa-icon [icon]="faHeart"
+                                       style="color: #8855C4; font-size: 25px"></fa-icon>
+                              <h5 class="icon-side-text" type="text" style="color: #8855C4; font-weight: bold">
+                                Favorites</h5>
+                            </div>
+                            <h5 type="text" *ngIf="dog.pfav != null">{{dog.pfav}}</h5>
+                            <h5 type="text" *ngIf="dog.pfav === null">-</h5>
+                          </div>
+                          <div class="col col-md-auto opt-2">
+                            <div class="row">
+                              <fa-icon [icon]="faStar"
+                                       style="color: #8855C4; font-size: 25px"></fa-icon>
+                              <h5 class="icon-side-text" type="text" style="color: #8855C4; font-weight: bold">
+                                Tricks</h5>
+                            </div>
+                            <h5 type="text" *ngIf="dog.ptrick != null">{{dog.ptrick}}</h5>
+                            <h5 type="text" *ngIf="dog.ptrick === null">-</h5>
+                            <div class="row">
+                              <fa-icon [icon]="faHeartBroken"
+                                       style="color: #8855C4; font-size: 25px"></fa-icon>
+                              <h5 class="icon-side-text" type="text" style="color: #8855C4; font-weight: bold">
+                                Dislikes</h5>
+                            </div>
+                            <h5 type="text" *ngIf="dog.pdislike != null">{{dog.pdislike}}</h5>
+                            <h5 type="text" *ngIf="dog.pdislike === null">-</h5>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col col-md-auto col-description">
+                        <h5 type="text" style="color: #8855C4; font-weight: bold">Doge's Letter</h5>
+                        <h5 type="text" *ngIf="dog.pletter != null">{{dog.pletter}}</h5>
+                        <h5 type="text" *ngIf="dog.pletter === null">-</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="vertical-space"></div>
+    <div id="cat-section" class="card w-100">
+      <div class="card-header">
+        <div class="row header-content">
+          <h4 class="dog-header" style="color: #8855C4">My Cats</h4>
+          <div class="justify-content-end ml-auto">
+            <button id="add-cat" class="btn-circle btn-success" (click)="goToAdd('cat')">
+              <fa-icon [icon]="faPlus" class="fa"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="card-body">
+          <div id="cats-column" class="col">
+            <div id="cat-card" class="card w-auto" *ngFor="let cat of cats">
+              <div class="col col-md-auto col-buttons">
+                <div class="d-flex flex-row-reverse">
+                  <button id="delete-cat" class="btn-circle btn-danger" (click)="deletePet(cat.pid, cat.pname)">
+                    <fa-icon [icon]="faTrashAlt" class="fa"></fa-icon>
+                  </button>
+                  <div class="width-space"></div>
+                  <button id="edit-cat" class="btn-circle btn-info" (click)="goToEdit(cat.pid,'cat')">
+                    <fa-icon [icon]="faPenAlt" class="fa"></fa-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row justify-content-md-center">
+                  <div class="d-flex flex-column justify-content-start avatar-section">
+                    <div class="avatar"><img *ngIf="cat.pphoto!=null" [src]="cat.pphoto">
+                      <img *ngIf="cat.pphoto==null" [src]="defaultcatphoto"></div>
+                    <button href="#" class="btn btn-outline-light" style="background-color: #8855C4; width: auto"
+                            (click)="changePhoto(cat.pid, 'cat')">Change Pet Photo
+                    </button>
+                  </div>
+                  <div class="col">
+                    <div class="row row-main-info">
+                      <div class="col col-md-auto col-main">
+                        <h5 class="name" type="text" *ngIf="cat.pgender == 'Male'"
+                            style="color: #419FD4">{{cat.pname}}</h5>
+                        <h5 class="name" type="text" *ngIf="cat.pgender == 'Female'"
+                            style="color: #E592DB">{{cat.pname}}</h5>
+                        <a class="btn inactiveLink" type="text" *ngIf="cat.pgender == 'Male'"
+                           style="background: #419FD4" readonly>{{cat.pbreed}}</a>
+                        <a class="btn inactiveLink" type="text" *ngIf="cat.pgender == 'Female'"
+                           style="background: #E592DB" readonly>{{cat.pbreed}}</a>
+                        <div class="row">
+                        <span>
+                        <fa-icon class="col-1-icon" [icon]="faBirthdayCake"
+                                 style="color: #8855C4; font-size: 25px"></fa-icon>
+                        </span>
+                          <h5 class="icon-side-text" type="text">{{cat.pbirth}}</h5>
+                        </div>
+                        <div *ngIf="cat.pisbred == false" class="row">
+                          <fa-icon class="col-1-icon" [icon]="faSeedling"
+                                   style="color: #8855C4; font-size: 25px"></fa-icon>
+                          <h5 class="icon-side-text" type="text">First Timer</h5>
+                        </div>
+
+                        <div *ngIf="cat.pisbred == true" class="row">
+                          <fa-icon class="col-1-icon" [icon]="faFire"
+                                   style="color: #8855C4; font-size: 25px"></fa-icon>
+                          <h5 class="icon-side-text" type="text">Experienced</h5>
+                        </div>
+                      </div>
+
+                      <div class="col col-md-auto optional-col">
+                        <div class="row optional-info">
+                          <div class="col col-md-auto opt-1">
+                            <div class="row">
+                              <fa-icon [icon]="faPalette"
+                                       style="color: #8855C4; font-size: 25px"></fa-icon>
+                              <h5 class="icon-side-text" type="text" style="color: #8855C4; font-weight: bold">
+                                Color</h5>
+                            </div>
+                            <h5 type="text" *ngIf="cat.pcolor != null">{{cat.pcolor}}</h5>
+                            <h5 type="text" *ngIf="cat.pcolor === null">-</h5>
+                            <div class="row">
+                              <fa-icon [icon]="faHeart"
+                                       style="color: #8855C4; font-size: 25px"></fa-icon>
+                              <h5 class="icon-side-text" type="text" style="color: #8855C4; font-weight: bold">
+                                Favorites</h5>
+                            </div>
+                            <h5 type="text" *ngIf="cat.pfav != null">{{cat.pfav}}</h5>
+                            <h5 type="text" *ngIf="cat.pfav === null">-</h5>
+                          </div>
+                          <div class="col col-md-auto opt-2">
+                            <div class="row">
+                              <fa-icon [icon]="faStar"
+                                       style="color: #8855C4; font-size: 25px"></fa-icon>
+                              <h5 class="icon-side-text" type="text" style="color: #8855C4; font-weight: bold">
+                                Tricks</h5>
+                            </div>
+                            <h5 type="text" *ngIf="cat.ptrick != null">{{cat.ptrick}}</h5>
+                            <h5 type="text" *ngIf="cat.ptrick === null">-</h5>
+                            <div class="row">
+                              <fa-icon [icon]="faHeartBroken"
+                                       style="color: #8855C4; font-size: 25px"></fa-icon>
+                              <h5 class="icon-side-text" type="text" style="color: #8855C4; font-weight: bold">
+                                Dislikes</h5>
+                            </div>
+                            <h5 type="text" *ngIf="cat.pdislike != null">{{cat.pdislike}}</h5>
+                            <h5 type="text" *ngIf="cat.pdislike === null">-</h5>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col col-md-auto col-description">
+                        <h5 type="text" style="color: #8855C4; font-weight: bold">Cat's Letter</h5>
+                        <h5 type="text" *ngIf="cat.pletter != null">{{cat.pletter}}</h5>
+                        <h5 type="text" *ngIf="cat.pletter === null">-</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

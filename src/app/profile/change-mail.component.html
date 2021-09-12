@@ -1,0 +1,75 @@
+<div id="register-div" class="d-flex justify-content-center">
+  <div class="card">
+    <div class="card-body">
+      <div class="alert-danger alert" *ngIf="password">Password is incorrect.</div>
+      <div class="alert-success alert" *ngIf="valid">Email is updated successfully.</div>
+      <form [formGroup]="mail" (ngSubmit)="changeMail()">
+        <div class="d-flex flex-column">
+          <div class="vertical-space"></div>
+          <div class="form-group">
+            <div class="input-group-prepend">
+              <span class="icon-register" style="color: #8855C4"><svg xmlns="http://www.w3.org/2000/svg" width="25"
+                                                                      height="25"
+                                                                      fill="currentColor" class="bi bi-envelope-fill"
+                                                                      viewBox="0 0 16 16">
+  <path
+    d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
+</svg></span>
+              <div class="col">
+                <input type="email" class="form-control" aria-label="Small"
+                       aria-describedby="inputGroup-sizing-sm"
+                       placeholder="New E-mail" [(ngModel)]="wingman.wmmail" formControlName="email"
+                       [ngClass]="{'invalid-input': mail.controls.email.invalid && (mail.controls.email.dirty || mail.controls.email.touched)}">
+                <div
+                  *ngIf="mail.controls['email'].invalid && (mail.controls['email'].dirty || mail.controls['email'].touched)"
+                  class="alert-div">
+                  <div *ngIf="mail.controls['email'].errors.required">
+                    Email is required
+                  </div>
+                  <div *ngIf="mail.controls['email'].errors.mail">
+                    Email must be a valid email address
+                  </div>
+                  <div *ngIf="mail.controls['email'].errors.mailExists">
+                    Email already exists
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group-prepend">
+              <span class="icon-register" style="color: #8855C4"><svg xmlns="http://www.w3.org/2000/svg" width="25"
+                                                                      height="25"
+                                                                      fill="currentColor" class="bi bi-key-fill"
+                                                                      viewBox="0 0 16 16">
+  <path
+    d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+</svg></span>
+              <div class="col">
+                <input type="password" class="form-control" aria-label="Small"
+                       aria-describedby="inputGroup-sizing-sm"
+                       placeholder="Password" [(ngModel)]="wingman.wmpw" formControlName="password"
+                       [ngClass]="{'invalid-input': mail.controls.password.invalid && (mail.controls.password.dirty || mail.controls.password.touched)}">
+                <div
+                  *ngIf="mail.controls['password'].invalid && (mail.controls['password'].dirty || mail.controls['password'].touched)"
+                  class="alert-div">
+                  <div *ngIf="mail.controls['password'].errors.required">
+                    Password is required
+                  </div>
+                  <div *ngIf="mail.controls['password'].errors.minlength">
+                    Password must be at least 6 characters
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button href="#" class="btn btn-outline-light" type="submit"
+                  value="upload"
+                  style="background-color: #8855C4">Change Mail Address
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

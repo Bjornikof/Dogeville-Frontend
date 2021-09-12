@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="assets/650862.jpg" alt="First slide">
+      </div>
+      <div class="carousel-item">
+      <img class="d-block w-100" src="assets/33456.jpg" alt="Second slide">
+    </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="assets/650892.jpg" alt="Third slide">
+      </div>
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+<div id="banner" class="d-flex justify-content-center">
+  <div class="col">
+    <h4 class="desc-header" style=" font-weight: bold">
+      Welcome to Dogeville
+    </h4>
+    <h5 class="desc-text">
+      Be the wingman your doge needs!
+    </h5>
+  </div>
+  <div id="register-div" class="col">
+    <button *ngIf="!currentUser" id="register-btn" class="btn btn-outline-light btn-lg" (click)="goToRegister()">REGISTER</button>
+  </div>
+</div>
+<div class="d-flex justify-content-center">
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <img src="assets/home_1.png">
+          <h4 class="card-title" style=" font-weight: bold">Create Doge's Profile</h4>
+        </div>
+        <h5 class="card-text">Create a stunning profile for your Doge and include his/her best shot</h5>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <img src="assets/home_2.png">
+          <h4 class="card-title" style=" font-weight: bold">Find a mate</h4>
+        </div>
+        <h5 class="card-text">Check possible mates for him/her and choose your favorite</h5>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <img src="assets/home_3.png">
+          <h4 class="card-title" style=" font-weight: bold">Message the Wingman</h4>
+        </div>
+        <h5 class="card-text">Message the Wingman and set up a date</h5>
+      </div>
+    </div>
+  </div>
+</div>

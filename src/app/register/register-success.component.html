@@ -1,0 +1,23 @@
+<div class="jumbotron vertical-center" style="background: none">
+  <div class="d-flex justify-content-center">
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-center">
+            <h4 *ngIf="verified==true" class="login-text" style="font-weight: bold; color: #8855C4">Your account has
+              been verified
+              successfully.</h4>
+            <h4 *ngIf="verified!=true" class="login-text" style="font-weight: bold; color: #8855C4">SOMETHING WENT
+              WRONG!</h4>
+          </div>
+          <div class="d-flex justify-content-center">
+            <a *ngIf="verified==true" class="btn btn-outline-light" style="background-color: #8855C4"
+               (click)="goToLogin()">LOGIN</a>
+            <h5 *ngIf="verified!=true" class="login-text" style="color: #8855C4">We could not verify your account.</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

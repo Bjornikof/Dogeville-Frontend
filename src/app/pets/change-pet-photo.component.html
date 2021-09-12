@@ -1,0 +1,23 @@
+<div id="edit-div" class="d-flex justify-content-center">
+  <div class="card w-auto">
+    <div class="card-body">
+        <div class="d-flex justify-content-center">
+          <div class="avatar"><img [src]="retrievedImage"></div>
+        </div>
+      <div class="d-flex flex-column">
+        <div class="vertical-space"></div>
+        <div *ngIf="!valid" class="alert-danger alert" style="display: inline-block">Image format is invalid</div>
+        <div *ngIf="!size" class="alert-danger alert" style="display: inline-block">Image size is too big (Limit: 300 KB)</div>
+        <div *ngIf="submitted" class="alert-success alert" style="display: inline-block">Pet photo updated successfully</div>
+
+        <input type="file" accept="image/jpeg" (change)="onFileChanged($event)" readonly style="border: 1px solid darkgray">
+        <div class="vertical-space"></div>
+        <button href="#" class="btn btn-outline-light" type="button" [disabled]="!valid || !selected || !size" (click)="onUpload()"
+                value="upload"
+                style="background-color: #8855C4">Change Pet Photo
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

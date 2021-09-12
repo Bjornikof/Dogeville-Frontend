@@ -1,0 +1,501 @@
+<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css"/>
+
+<div id="pet-div" class="d-flex justify-content-center">
+  <div class="card w-auto">
+    <div class="card-header">
+      <div class="row header-content">
+        <h5 class="dog-header" style="color: #8855C4" *ngIf="petType === 'dog'">Edit Doge Profile</h5>
+        <h5 class="dog-header" style="color: #8855C4" *ngIf="petType === 'cat'">Edit Cat Profile</h5>
+      </div>
+    </div>
+    <div class="card-body" *ngIf="petType === 'dog'">
+      <form [formGroup]="editPet" (ngSubmit)="editThisPet()">
+        <div class="row">
+          <div class="col">
+            <div class="input-group input-group-sm mb-3">
+              <div class="col">
+                <div class="form-group">
+                  <div class="input-group-prepend">
+              <span class="icon-pet-awesome"><fa-icon [icon]="faDog" class="fa"
+                                                      style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                             placeholder="Doge's name" [(ngModel)]="pet.pname" formControlName="name"
+                             [ngClass]="{'invalid-input': editPet.controls.name.invalid && (editPet.controls.name.dirty || editPet.controls.name.touched)}"/>
+                      <div
+                        *ngIf="editPet.controls['name'].invalid && (editPet.controls['name'].dirty || editPet.controls['name'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['name'].errors.required">
+                          Name is required
+                        </div>
+                        <div *ngIf="editPet.controls['name'].errors.pattern">
+                          Name can't include numbers
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faPaw" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <select class="form-control"
+                              [(ngModel)]="pet.pbreed"
+                              formControlName="breed"
+                              [ngClass]="{'invalid-input': editPet.controls.breed.invalid && (editPet.controls.breed.dirty || editPet.controls.breed.touched)}">
+                        <option [disabled]="breed_item === 'Doge\'s breed'" *ngFor="let breed_item of breed_dog_values">
+                          {{breed_item}}
+                        </option>
+                      </select>
+                      <div
+                        *ngIf="editPet.controls['breed'].invalid && (editPet.controls['breed'].dirty || editPet.controls['breed'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['breed'].errors.required">
+                          Breed is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faVenusMars" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <select class="form-control"
+                              required="required"
+                              [(ngModel)]="pet.pgender"
+                              formControlName="gender"
+                              [ngClass]="{'invalid-input': editPet.controls.gender.invalid && (editPet.controls.gender.dirty || editPet.controls.gender.touched)}">
+                        <option disabled selected value="undefined">Doge's gender</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                      </select>
+                      <div
+                        *ngIf="editPet.controls['gender'].invalid && (editPet.controls['gender'].dirty || editPet.controls['gender'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['gender'].errors.required">
+                          Gender is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group input-group">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faBirthdayCake" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                  <div class="col">
+                    <div class="input-group">
+                      <input class="form-control" placeholder="YYYY-MM-DD"
+                             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
+                             formControlName="birthday" readonly
+                             [ngClass]="{'invalid-input': editPet.controls.birthday.invalid && (editPet.controls.birthday.dirty || editPet.controls.birthday.touched)}">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                          <fa-icon [icon]="faCalendar"></fa-icon>
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                      *ngIf="editPet.controls['birthday'].invalid && (editPet.controls['birthday'].dirty || editPet.controls['birthday'].touched)"
+                      class="alert-div">
+                      <div *ngIf="editPet.controls['birthday'].errors.required">
+                        Birthday is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faQuestionCircle" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <select class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                              [(ngModel)]="pet.pisbred" formControlName="isBred"
+                              [ngClass]="{'invalid-input': editPet.controls.isBred.invalid && (editPet.controls.isBred.dirty || editPet.controls.isBred.touched)}">
+                        <option disabled selected value="undefined">Did Doge breed before?</option>
+                        <option value=true>
+                          Yes
+                        </option>
+                        <option value=false>
+                          No
+                        </option>
+                      </select>
+                      <div
+                        *ngIf="editPet.controls['isBred'].invalid && (editPet.controls['isBred'].dirty || editPet.controls['isBred'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['isBred'].errors.required">
+                          Breeding information is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faPalette" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                             placeholder="Doge's color" [(ngModel)]="pet.pcolor" formControlName="color"
+                             [ngClass]="{'invalid-input': editPet.controls.color.invalid && (editPet.controls.color.dirty || editPet.controls.color.touched)}">
+                      <div
+                        *ngIf="editPet.controls['color'].invalid && (editPet.controls['color'].dirty || editPet.controls['color'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['color'].errors.maxlength">
+                          Color is too long
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faStar" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                             placeholder="Doge's tricks" [(ngModel)]="pet.ptrick" formControlName="tricks"
+                             [ngClass]="{'invalid-input': editPet.controls.tricks.invalid && (editPet.controls.tricks.dirty || editPet.controls.tricks.touched)}">
+                      <div
+                        *ngIf="editPet.controls['tricks'].invalid && (editPet.controls['tricks'].dirty || editPet.controls['tricks'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['tricks'].errors.maxlength">
+                          Tricks are too long
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faHeart" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                             placeholder="Doge's favorites" [(ngModel)]="pet.pfav" formControlName="favs"
+                             [ngClass]="{'invalid-input': editPet.controls.favs.invalid && (editPet.controls.favs.dirty || editPet.controls.favs.touched)}">
+                      <div
+                        *ngIf="editPet.controls['favs'].invalid && (editPet.controls['favs'].dirty || editPet.controls['favs'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['favs'].errors.maxlength">
+                          Favorites are too long
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faHeartBroken" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                             placeholder="Doge's dislikes" [(ngModel)]="pet.pdislike" formControlName="dislikes"
+                             [ngClass]="{'invalid-input': editPet.controls.dislikes.invalid && (editPet.controls.dislikes.dirty || editPet.controls.dislikes.touched)}">
+                      <div
+                        *ngIf="editPet.controls['dislikes'].invalid && (editPet.controls['dislikes'].dirty || editPet.controls['dislikes'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['dislikes'].errors.maxlength">
+                          Dislikes are too long
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="input-group input-group-sm mb-3">
+              <div class="col">
+                <h5 class="letter-text">Doge's Letter</h5>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <div class="col">
+                      <textarea type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                                placeholder="Doge's charming biography" [(ngModel)]="pet.pletter" formControlName="letter"
+                                [ngClass]="{'invalid-input': editPet.controls.letter.invalid && (editPet.controls.letter.dirty || editPet.controls.letter.touched)}"></textarea>
+                      <div
+                        *ngIf="editPet.controls['letter'].invalid && (editPet.controls['letter'].dirty || editPet.controls['letter'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['letter'].errors.maxlength">
+                          Letter is too long
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="submitted" class="alert-success alert">Doge profile updated successfully
+            </div>
+          </div>
+
+        </div>
+        <div class="form-group">
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-outline-light register-btn" type="submit" style="background-color: #8855C4">
+              SAVE
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="card-body" *ngIf="petType === 'cat'">
+      <form [formGroup]="editPet" (ngSubmit)="editThisPet()">
+        <div class="row">
+          <div class="col">
+            <div class="input-group input-group-sm mb-3">
+              <div class="col">
+                <div class="form-group">
+                  <div class="input-group-prepend">
+              <span class="icon-pet-awesome"><fa-icon [icon]="faCat" class="fa"
+                                                      style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                             placeholder="Cat's name" [(ngModel)]="pet.pname" formControlName="name"
+                             [ngClass]="{'invalid-input': editPet.controls.name.invalid && (editPet.controls.name.dirty || editPet.controls.name.touched)}"/>
+                      <div
+                        *ngIf="editPet.controls['name'].invalid && (editPet.controls['name'].dirty || editPet.controls['name'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['name'].errors.required">
+                          Name is required
+                        </div>
+                        <div *ngIf="editPet.controls['name'].errors.pattern">
+                          Name can't include numbers
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faPaw" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <select class="form-control"
+                              [(ngModel)]="pet.pbreed"
+                              formControlName="breed"
+                              [ngClass]="{'invalid-input': editPet.controls.breed.invalid && (editPet.controls.breed.dirty || editPet.controls.breed.touched)}">
+                        <option [disabled]="breed_item === 'Cat\'s breed'" *ngFor="let breed_item of breed_cat_values">
+                          {{breed_item}}
+                        </option>
+                      </select>
+                      <div
+                        *ngIf="editPet.controls['breed'].invalid && (editPet.controls['breed'].dirty || editPet.controls['breed'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['breed'].errors.required">
+                          Breed is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faVenusMars" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <select class="form-control"
+                              required="required"
+                              [(ngModel)]="pet.pgender"
+                              formControlName="gender"
+                              [ngClass]="{'invalid-input': editPet.controls.gender.invalid && (editPet.controls.gender.dirty || editPet.controls.gender.touched)}">
+                        <option disabled selected value="undefined">Cat's gender</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                      </select>
+                      <div
+                        *ngIf="editPet.controls['gender'].invalid && (editPet.controls['gender'].dirty || editPet.controls['gender'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['gender'].errors.required">
+                          Gender is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group input-group">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faBirthdayCake" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                  <div class="col">
+                    <div class="input-group">
+                      <input class="form-control" placeholder="YYYY-MM-DD"
+                             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
+                             formControlName="birthday" readonly
+                             [ngClass]="{'invalid-input': editPet.controls.birthday.invalid && (editPet.controls.birthday.dirty || editPet.controls.birthday.touched)}">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                          <fa-icon [icon]="faCalendar"></fa-icon>
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                      *ngIf="editPet.controls['birthday'].invalid && (editPet.controls['birthday'].dirty || editPet.controls['birthday'].touched)"
+                      class="alert-div">
+                      <div *ngIf="editPet.controls['birthday'].errors.required">
+                        Birthday is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faQuestionCircle" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <select class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                              [(ngModel)]="pet.pisbred" formControlName="isBred"
+                              [ngClass]="{'invalid-input': editPet.controls.isBred.invalid && (editPet.controls.isBred.dirty || editPet.controls.isBred.touched)}">
+                        <option disabled selected value="undefined">Did Cat breed before?</option>
+                        <option value=true>
+                          Yes
+                        </option>
+                        <option value=false>
+                          No
+                        </option>
+                      </select>
+                      <div
+                        *ngIf="editPet.controls['isBred'].invalid && (editPet.controls['isBred'].dirty || editPet.controls['isBred'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['isBred'].errors.required">
+                          Breeding information is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faPalette" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                             placeholder="Cat's color" [(ngModel)]="pet.pcolor" formControlName="color"
+                             [ngClass]="{'invalid-input': editPet.controls.color.invalid && (editPet.controls.color.dirty || editPet.controls.color.touched)}">
+                      <div
+                        *ngIf="editPet.controls['color'].invalid && (editPet.controls['color'].dirty || editPet.controls['color'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['color'].errors.maxlength">
+                          Color is too long
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faStar" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                             placeholder="Cat's tricks" [(ngModel)]="pet.ptrick" formControlName="tricks"
+                             [ngClass]="{'invalid-input': editPet.controls.tricks.invalid && (editPet.controls.tricks.dirty || editPet.controls.tricks.touched)}">
+                      <div
+                        *ngIf="editPet.controls['tricks'].invalid && (editPet.controls['tricks'].dirty || editPet.controls['tricks'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['tricks'].errors.maxlength">
+                          Tricks are too long
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faHeart" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                             placeholder="Cat's favorites" [(ngModel)]="pet.pfav" formControlName="favs"
+                             [ngClass]="{'invalid-input': editPet.controls.favs.invalid && (editPet.controls.favs.dirty || editPet.controls.favs.touched)}">
+                      <div
+                        *ngIf="editPet.controls['favs'].invalid && (editPet.controls['favs'].dirty || editPet.controls['favs'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['favs'].errors.maxlength">
+                          Favorites are too long
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                <span class="icon-pet-awesome"><fa-icon [icon]="faHeartBroken" class="fa"
+                                                        style="color: #8855C4"></fa-icon></span>
+                    <div class="col">
+                      <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                             placeholder="Cat's dislikes" [(ngModel)]="pet.pdislike" formControlName="dislikes"
+                             [ngClass]="{'invalid-input': editPet.controls.dislikes.invalid && (editPet.controls.dislikes.dirty || editPet.controls.dislikes.touched)}">
+                      <div
+                        *ngIf="editPet.controls['dislikes'].invalid && (editPet.controls['dislikes'].dirty || editPet.controls['dislikes'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['dislikes'].errors.maxlength">
+                          Dislikes are too long
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="input-group input-group-sm mb-3">
+              <div class="col">
+                <h5 class="letter-text">Cat's Letter</h5>
+                <div class="form-group">
+                  <div class="input-group-prepend">
+                    <div class="col">
+                      <textarea type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                                placeholder="Cat's charming biography" [(ngModel)]="pet.pletter" formControlName="letter"
+                                [ngClass]="{'invalid-input': editPet.controls.letter.invalid && (editPet.controls.letter.dirty || editPet.controls.letter.touched)}"></textarea>
+                      <div
+                        *ngIf="editPet.controls['letter'].invalid && (editPet.controls['letter'].dirty || editPet.controls['letter'].touched)"
+                        class="alert-div">
+                        <div *ngIf="editPet.controls['letter'].errors.maxlength">
+                          Letter is too long
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="submitted" class="alert-success alert">Cat profile updated successfully
+            </div>
+          </div>
+
+        </div>
+        <div class="form-group">
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-outline-light register-btn" type="submit" style="background-color: #8855C4">
+              SAVE
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

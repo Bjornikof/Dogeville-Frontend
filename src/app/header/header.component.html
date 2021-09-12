@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css"/>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand " href="/">
+    <img src="./assets/dogeville_banner.png" class="banner-img" alt="Responsive image">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto">
+      <a class="nav-item nav-link" routerLink="/home" routerLinkActive="active" style="color: #8855C4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-fill"
+             viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+                d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+          <path fill-rule="evenodd"
+                d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+        </svg>
+        HOME</a>
+      <li class="nav-item">
+      <a class="nav-item nav-link" href="/search" style="color: #8855C4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search"
+             viewBox="0 0 16 16">
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+        SEARCH</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" *ngIf="!currentUser" href="/register" style="color: #8855C4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill"
+               viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          </svg>
+          REGISTER</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" *ngIf="currentUser" href="#" style="color: #8855C4">
+           <span class="icon-register-awesome"><fa-icon [icon]="faEnvelopeOpen" class="fa"
+                                                        style="color: #8855C4; font-size: 20px;"></fa-icon></span>
+          INBOX</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" *ngIf="currentUser" href="/mydoges" style="color: #8855C4">
+           <span class="icon-register-awesome"><fa-icon [icon]="faPaw" class="fa"
+                                                        style="color: #8855C4; font-size: 20px;"></fa-icon></span>
+          MY DOGES</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" *ngIf="currentUser" href="/myprofile" style="color: #8855C4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill"
+               viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          </svg>
+          MY PROFILE</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" *ngIf="!currentUser" href="/login" style="color: #8855C4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+               class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+            <path fill-rule="evenodd"
+                  d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+          </svg>
+          LOGIN</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" *ngIf="currentUser" href="" (click)="logoutWingman()" style="color: #8855C4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+               class="bi bi-box-arrow-left"
+               viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+            <path fill-rule="evenodd"
+                  d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+          </svg>
+          LOGOUT</a>
+      </li>
+    </div>
+  </div>
+</nav>
+<div class="banner-underline"></div>

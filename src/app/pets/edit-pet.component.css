@@ -1,0 +1,92 @@
+
+#pet-div {
+  margin-top: 2em;
+}
+
+.span{
+  margin-top: 10px;
+}
+
+.fa{
+  font-size: 25px;
+}
+
+.icon-pet-awesome{
+  margin-top: 5px;
+  width: 25px;
+}
+
+#birth-date{
+  width: 30px;
+}
+
+.alert-div{
+  color: #C42917;
+  text-align: center;
+  font-size: 14px;
+}
+
+input, select, textarea {
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline:none;
+  border: 1px solid #AB97DD;
+  box-shadow: 0px 0px 4px #AB97DD;
+  -moz-box-shadow: 0px 0px 4px #AB97DD;
+  -webkit-box-shadow: 0px 0px 4px #AB97DD;
+}
+
+.invalid-input {
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  outline:none;
+  border: 1px solid #C42917;
+  box-shadow: 0px 0px 4px #C42917;
+  -moz-box-shadow: 0px 0px 4px #C42917;
+  -webkit-box-shadow: 0px 0px 4px #C42917;
+}
+
+.invalid-input:focus {
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  outline:none;
+  border: 1px solid #C42917;
+  box-shadow: 0px 0px 4px #C42917;
+  -moz-box-shadow: 0px 0px 4px #C42917;
+  -webkit-box-shadow: 0px 0px 4px #C42917;
+}
+
+.letter-text{
+  margin-top: 50%;
+  text-align: center;
+  color: #8855C4;
+}
+
+.dog-header {
+  margin-top: 10px;
+  margin-left: 15px;
+}
+
+.avatar {
+  overflow: hidden;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  outline:none;
+  border: 1px solid #8855C4;
+  box-shadow: 0px 0px 4px #8855C4;
+  -moz-box-shadow: 0px 0px 4px #8855C4;
+  -webkit-box-shadow: 0px 0px 4px #8855C4;
+  margin-bottom: 20px;
+}
+
+.avatar img{
+  width: 250px;
+  height: 250px;
+}

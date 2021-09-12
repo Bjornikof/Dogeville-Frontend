@@ -1,0 +1,167 @@
+.btn-circle {
+  width: 45px;
+  height: 45px;
+  padding-bottom: 5px;
+  border-radius: 25px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #6A9842;
+}
+
+.header-content {
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+.dog-header {
+  margin-top: 10px;
+}
+
+.cat-header {
+  margin-top: 10px;
+}
+
+.fa {
+  color: white;
+  vertical-align: middle;
+}
+
+.vertical-space {
+  height: 2em;
+}
+
+.width-space {
+  width: 3px;
+}
+
+.inactiveLink {
+  pointer-events: none;
+  cursor: default;
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
+.avatar {
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  outline: none;
+  border: 1px solid #8855C4;
+  box-shadow: 0px 0px 4px #8855C4;
+  -moz-box-shadow: 0px 0px 4px #8855C4;
+  -webkit-box-shadow: 0px 0px 4px #8855C4;
+  margin-bottom: 20px;
+}
+
+.avatar img {
+  width: 200px;
+  height: 200px;
+}
+
+.wingman-btn {
+  width: fit-content;
+  height: fit-content;
+  padding-bottom: 5px;
+  font-size: 15px;
+  outline: none;
+  text-align: center;
+  color: white;
+  background-color: #8855C4;
+}
+
+.avatar-wingman {
+  overflow: hidden;
+  position: relative;
+  width: 95px;
+  height: 95px;
+  outline: none;
+  border-radius: 50%;
+  border: 1px solid #8855C4;
+  box-shadow: 0px 0px 6px #8855C4;
+  -moz-box-shadow: 0px 0px 6px #8855C4;
+  -webkit-box-shadow: 0px 0px 6px #8855C4;
+  margin-left: 13px;
+  margin-bottom: 2px;
+}
+
+.avatar-wingman img {
+  width: 95px;
+  height: 95px;
+}
+
+.wingman-btn:hover {
+  background-color: #633C90;
+}
+
+.wingman-btn:focus {
+  outline: none;
+  border: 1px solid #8855C4;
+  box-shadow: 0px 0px 6px #8855C4;
+  -moz-box-shadow: 0px 0px 6px #8855C4;
+  -webkit-box-shadow: 0px 0px 6px #8855C4;
+}
+
+.col-buttons {
+  padding-top: 3px;
+}
+
+.avatar-section {
+  padding-right: 5px;
+  padding-left: 10px;
+}
+
+#dog-card {
+  margin-bottom: 6px;
+}
+
+#cat-card {
+  margin-bottom: 6px;
+}
+
+.col-1-icon {
+  padding-left: 15px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 23px
+}
+
+.icon-side-text {
+  margin-top: 7px;
+  margin-left: 7px;
+}
+
+.optional-info {
+  margin-left: 7px;
+}
+
+.opt-1 {
+  margin-top: 25px;
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.opt-2 {
+  margin-top: 25px;
+  margin-left: 20px;
+}
+
+.col-description {
+  margin-top: 32px;
+}
+
+.all-page {
+  margin-left: 10%;
+  margin-right: 10%;
+}
